@@ -175,3 +175,16 @@ void save_data_and_string(std::string path, std::string header, int Nlines, int 
 	}
 	ofs.close();
 }
+void save_string_and_data(std::string path, std::string header, int Nlines, int Ncolumns, std::string* string, double** data){	
+	std::cout << "Saving to: " << path << std::endl;
+	std::ofstream ofs(path);
+	ofs << header << "\n";
+	for(int i=0; i<Nlines; i++){
+		ofs << string[i] << " ";
+		for(int j=0; j<Ncolumns; j++){
+			ofs << " " << data[j][i];
+		}
+		ofs << std::endl;
+	}
+	ofs.close();
+}
