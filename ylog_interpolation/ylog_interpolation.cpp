@@ -34,7 +34,7 @@ double ylog_interpolation(double** data, int N, double x) {
 
 	// エラーチェック（両隣が見つからない場合）
 	if(x_minus_i == -1 && x_plus_i == -1){
-		std::cerr << "linear_interpolation: ERROR! No data points found." << std::endl;
+		std::cerr << "ylog_interpolation: ERROR! No data points found." << std::endl;
 		return 0.0; // エラー時の戻り値（適宜変更してください）
 	}
 
@@ -43,7 +43,7 @@ double ylog_interpolation(double** data, int N, double x) {
 	if(x_plus_i == -1) { return data[1][x_minus_i]; }
 
 	// デバッグ出力（必要に応じて）
-	 std::cout << "L: " << data[0][x_minus_i] << ", R: " << data[0][x_plus_i] << std::endl;
+	 std::cout << "L: " << data[0][x_minus_i] << " " << data[1][x_minus_i] << ", R: " << data[0][x_plus_i] << " " << data[1][x_plus_i] << std::endl;
 
 	double x_minus = data[0][x_minus_i];
 	double x_plus  = data[0][x_plus_i];
@@ -52,5 +52,5 @@ double ylog_interpolation(double** data, int N, double x) {
 
 	// 線形補間計算
 	// y = y0 + (y1 - y0) * (x - x0) / (x1 - x0)
-	return y_minus + std::pow(10, (std::log10(y_plus) - std::log10(y_minus)) / (x_plus - x_minus) * (x - x_minus));
+	return std::pow(10, std::log10(y_minus) + (std::log10(y_plus) - std::log10(y_minus)) / (x_plus - x_minus) * (x - x_minus) );
 }
