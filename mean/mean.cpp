@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
 		PATHS_PATH = argv[1];
 	}
 	else{
-		std::cerr << "Usage: ./min_max PATHs.txt" << std::endl;
+		std::cerr << "Usage: ./mean PATHs.txt" << std::endl;
 		return 1;
 	}
 	
